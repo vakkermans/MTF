@@ -10,15 +10,25 @@ public class Controllers {
 	private static Controllers instance = null;
 	
 	private OscController oscController;
+	private KeyController keyController;
+	private WindowMasksController windowMasksController;
 	
 	protected Controllers() {
+		keyController = new KeyController();
+		windowMasksController = new WindowMasksController();
 		oscController = new OscController();
 		oscController.start();
 	}
 	
 	public static void update() {
 		Controllers controllers = getInstance();
-		//controllers.orbController.update();
+		controllers.windowMasksController.update();
+		
+	}
+	
+	public static void updateAtEndOfDraw() {
+		Controllers controllers = getInstance();
+		controllers.keyController.resetChangeFlags();
 	}
 	
     public static Controllers getInstance() {
@@ -43,6 +53,10 @@ public class Controllers {
      */	
 	public static OscController getOscController() {
 		return getInstance().oscController;
+	}
+	
+	public static KeyController getKeyController() {
+		return getInstance().keyController;
 	}
 
 }

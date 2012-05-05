@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import net.qmat.mtf.controllers.ContactController;
 import net.qmat.mtf.controllers.Controllers;
 import net.qmat.mtf.models.Models;
+import net.qmat.mtf.models.WindowMasksModel;
 import net.qmat.mtf.utils.Settings;
 import pbox2d.PBox2D;
 import codeanticode.glgraphics.GLConstants;
@@ -58,12 +59,13 @@ public class Main extends PApplet {
 		
 		Controllers.update();
 		Models.update();
+		
 		Models.draw();
+		
+		Controllers.updateAtEndOfDraw();
 
 		box2d.step();
 		frameCount++;
-		
-		smooth();
 	}
 
 	public static void main(String args[]) {
@@ -96,6 +98,21 @@ public class Main extends PApplet {
 		Settings.init();
 		String location = "--location=0,0";
 		PApplet.main(new String[] {location, "net.qmat.mtf.Main" });
+		
+		String[][] keys = new String[][] {
+				{"s", "Save masks to disk."},
+				{"a", "Add new mask."},
+				{"d", "Delete selected mask."},
+				{"arrows", "Resize the selected mask."},
+				{"h", "Toggle hiding of the window mask borders."},
+				{"e", "Toggle resizing both dimensions of the masks together."}
+		};
+		System.out.println("\nThe following commands are available.");
+		for(String[] key : keys) {
+			System.out.println("\t" + key[0] + "\t" + key[1]);
+		}
+		System.out.println();
+		
 	}
 
 	public void init(){
@@ -110,12 +127,19 @@ public class Main extends PApplet {
 	}
 
 	public void mousePressed() {
-		// TODO: implement masking controls
+		Controllers.getKeyController().mousePressed(mouseButton);
+	}
+	
+	public void mouseReleased() {
+		Controllers.getKeyController().mouseReleased(mouseButton);
 	}
 	
 	public void keyPressed() {
-		if(key == 's') {
-			Models.getWindowMasksModel().saveMasks();
-		}
+		System.out.println(keyCode);
+		Controllers.getKeyController().keyPressed(keyCode);
+	}
+	
+	public void keyReleased() {
+		Controllers.getKeyController().keyReleased(keyCode);
 	}
 }

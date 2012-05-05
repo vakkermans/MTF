@@ -21,29 +21,69 @@ public class WindowMasksModel extends ProcessingObject {
 	private ArrayList<WindowMask> masks;
 	
 	private boolean showStrokesP = true;
+	private WindowMask selectedMask = null;
 	
 	public WindowMasksModel() {
 		loadMasks();
 	}
 	
 	public void draw() {
-		p.background(0);
-		if(showStrokesP)
-			p.stroke(255, 0, 0);
-		else
-			p.noStroke();
 		p.ellipseMode(Main.CENTER);
 		
 		for(WindowMask mask : masks) {
-			p.ellipse(mask.x, mask.y, mask.diameter, mask.diameter);
+			if(showStrokesP) {
+				p.fill(0, 0, 0, 200);
+				if(selectedMask == mask)
+					p.stroke(255, 255, 0);
+				else
+					p.stroke(255, 0, 0);
+			} else {
+				p.fill(0);
+				p.noStroke();
+			}
+			p.ellipse(mask.x, mask.y, mask.width, mask.height);
 		}
 	}
 	
-	public File getMasksFile() {
+	public boolean selectedMaskP() {
+		return selectedMask != null;
+	}
+	
+	public void selectMask(float x, float y) {
+		for(int i=masks.size()-1; i>=0; i--) {
+			WindowMask mask = masks.get(i);
+			// for a circle: if(Main.dist(x, y, mask.x, mask.y) < mask.diameter/2f) {
+			if(insideMask(x, y, mask)) {
+				selectedMask = mask;
+				return;
+			}
+			
+		}
+		unselectMask();
+	}
+	
+	private boolean insideMask(float x, float y, WindowMask mask) {
+		float dx = x - mask.x;
+		float dy = y - mask.y;
+		return (dx*dx) / ((mask.width/2)*(mask.width/2)) + (dy*dy) / ((mask.height/2)*(mask.height/2)) < 1f;
+	}
+	
+	private void unselectMask() {
+		selectedMask = null;
+	}
+	
+	public void moveMask(float x, float y) {
+		if(selectedMask != null) {
+			selectedMask.x = x;
+			selectedMask.y = y;
+		}
+	}
+	
+	private File getMasksFile() {
 		return Settings.getConfigurationFile(Settings.CONF_WINDOW_MASKS);
 	}
 	
-	public void loadMasks() {
+	private void loadMasks() {
 		Type t = new TypeToken<ArrayList<WindowMask>>(){}.getType();
 		try {
 			File f = getMasksFile();
@@ -72,12 +112,29 @@ public class WindowMasksModel extends ProcessingObject {
 	
 	public WindowMask addMask() {
 		WindowMask mask = new WindowMask();
+		mask.x = p.mouseX;
+		mask.y = p.mouseY;
 		masks.add(mask);
 		return mask;
 	}
 	
-	public void removeMask(WindowMask mask) {
-		masks.remove(mask);
+	public void removeMask() {
+		if(selectedMask != null)
+			masks.remove(selectedMask);
+	}
+	
+	public void changeWidth(float amount) {
+		if(selectedMask != null)
+			selectedMask.width += amount;
+	}
+	
+	public void changeHeight(float amount) {
+		if(selectedMask != null)
+			selectedMask.height += amount;
+	}
+	
+	public void toggleBorderHiding() {
+		showStrokesP = !showStrokesP;
 	}
 
 }
