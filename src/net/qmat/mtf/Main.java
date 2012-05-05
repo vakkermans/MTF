@@ -7,6 +7,8 @@
 
 package net.qmat.mtf;
 
+import com.google.gson.Gson;
+
 import net.qmat.mtf.controllers.ContactController;
 import net.qmat.mtf.controllers.Controllers;
 import net.qmat.mtf.models.Models;
@@ -22,13 +24,7 @@ public class Main extends PApplet {
 	public static Main p;
 	public static PBox2D box2d;
 	public int frameCount = 0; 
-
-	/*
-	 * Cache for speed.
-	 */
-	public static int centerX, centerY;
-	public static int table;
-	public static float outerRingInnerRadius, outerRingOuterRadius;
+	public Gson gson = new Gson();
 
 	public Main() {
 		p = this;
@@ -58,8 +54,9 @@ public class Main extends PApplet {
 	}
 
 	public void draw() {
+		background(0);
+		
 		Controllers.update();
-
 		Models.update();
 		Models.draw();
 
@@ -114,5 +111,11 @@ public class Main extends PApplet {
 
 	public void mousePressed() {
 		// TODO: implement masking controls
+	}
+	
+	public void keyPressed() {
+		if(key == 's') {
+			Models.getWindowMasksModel().saveMasks();
+		}
 	}
 }

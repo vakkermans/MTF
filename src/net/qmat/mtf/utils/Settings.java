@@ -1,8 +1,11 @@
 package net.qmat.mtf.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Properties;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class Settings {
 	
@@ -13,6 +16,12 @@ public class Settings {
 	
 	// settings for network
 	public static String OSC_LOCAL_PORT = "OSC_LOCAL_PORT";
+	
+	// configuration files
+	public static String CONF_WINDOW_MASKS = "window_masks.json";
+	
+	
+	
 	
 	private static Settings instance = null;
 	Properties properties = new Properties();
@@ -62,6 +71,18 @@ public class Settings {
 		for(int i=0; i<split.length; i++)
 			result[i] = Float.parseFloat(split[i]);
 		return result;
+	}
+	
+	private static String getAppPath() {
+		return System.getProperty("user.home") + File.separator + ".net.qmat.mtf";
+	}
+	
+	public static String getConfigurationPath(String filename) {
+		return getAppPath() + File.separator + filename;
+	}
+	
+	public static File getConfigurationFile(String filename) {
+		return new File(Settings.getConfigurationPath(filename));
 	}
 	
 }

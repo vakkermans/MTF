@@ -44,7 +44,6 @@ public class OscController extends Thread {
 	
 	private void sendEvent(QueueMessage qm) {
 		OscMessage m = new OscMessage(qm.endPoint);
-		m.add(Main.table);
 		for(Object obj : qm.objects) {
 			if(obj instanceof Integer)
 				m.add((Integer)obj);

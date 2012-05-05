@@ -8,11 +8,12 @@ package net.qmat.mtf.models;
 public class Models {
 
 	private static Models instance = null;
+	private WindowMasksModel windowMasksModel;
 	
 	//private HandsModel handsModel;
 	
 	protected Models() {
-		//background = new Background();
+		windowMasksModel = new WindowMasksModel();
 	}
 	
     public static Models getInstance() {
@@ -36,14 +37,16 @@ public class Models {
      * Getter methods for the models.
      */
     
-    /*public static HandsModel getHandsModel() {
-    	return instance.handsModel;
-    }*/
+    public static WindowMasksModel getWindowMasksModel() {
+    	return instance.windowMasksModel;
+    }
     
     public static void draw() {
     	// Call all the models' draw functions here.
     	Models models = Models.getInstance();
-    	//models.background.draw();
+    	
+    	// draw the masks last
+    	models.windowMasksModel.draw();
     }
     
     public static void update() {
