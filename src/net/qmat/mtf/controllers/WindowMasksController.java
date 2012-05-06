@@ -74,7 +74,7 @@ public class WindowMasksController {
 		// Move the selected mask when the left mouse key is pressed.
 		if(keyc.mouseLeft) {
 			if(wmm.selectedMaskP()) {
-				wmm.moveMask(Main.p.mouseX, Main.p.mouseY);
+				wmm.moveMask(Main.p.mouseX - keyc.lastMouseX, Main.p.mouseY - keyc.lastMouseY);
 			}
 		// Otherwise check if we should select a mask.
 		} else {

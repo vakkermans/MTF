@@ -72,10 +72,10 @@ public class WindowMasksModel extends ProcessingObject {
 		selectedMask = null;
 	}
 	
-	public void moveMask(float x, float y) {
+	public void moveMask(float dx, float dy) {
 		if(selectedMask != null) {
-			selectedMask.x = x;
-			selectedMask.y = y;
+			selectedMask.x += dx;
+			selectedMask.y += dy;
 		}
 	}
 	

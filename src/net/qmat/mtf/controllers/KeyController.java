@@ -13,6 +13,9 @@ public class KeyController {
 
 	private boolean hadInputP = false;
 	
+	public int lastMouseX = 0;
+	public int lastMouseY = 0;
+	
 	public KeyController() {
 		initialiseKeys();
 	}
@@ -89,4 +92,8 @@ public class KeyController {
 		hadInputP = true;
 	}
 	
+	public void updateMouse() {
+		lastMouseX = Main.p.mouseX;
+		lastMouseY = Main.p.mouseY;
+	}
 }

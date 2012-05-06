@@ -26,6 +26,7 @@ public class Main extends PApplet {
 	public static PBox2D box2d;
 	public int frameCount = 0; 
 	public Gson gson = new Gson();
+	public static boolean debug = false;
 
 	public Main() {
 		p = this;
@@ -96,6 +97,8 @@ public class Main extends PApplet {
 		*/
 		
 		Settings.init();
+		debug = Settings.getBoolean(Settings.DEBUG);
+		
 		String location = "--location=0,0";
 		PApplet.main(new String[] {location, "net.qmat.mtf.Main" });
 		

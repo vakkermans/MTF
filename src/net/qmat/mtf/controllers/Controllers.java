@@ -29,6 +29,7 @@ public class Controllers {
 	public static void updateAtEndOfDraw() {
 		Controllers controllers = getInstance();
 		controllers.keyController.resetChangeFlags();
+		controllers.keyController.updateMouse();
 	}
 	
     public static Controllers getInstance() {

@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 public class Settings {
 	
 	// settings for graphics
+	public static String DEBUG = "DEBUG";
 	public static String PR_WIDTH = "PR_WIDTH";
 	public static String PR_HEIGHT = "PR_HEIGHT";
 	public static String PR_FULLSCREEN = "PR_FULLSCREEN";
