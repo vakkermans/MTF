@@ -34,7 +34,7 @@ public class MoonModel extends ProcessingObject {
 	
 	// effect parameters
 	public float fx = 0.4f;
-	public float fy = 0.25f;
+	public float fy = 0.4f;
 
 
 

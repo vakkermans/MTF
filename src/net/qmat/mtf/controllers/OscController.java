@@ -1,5 +1,6 @@
 package net.qmat.mtf.controllers;
 
+import java.util.Arrays;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import net.qmat.mtf.Main;
@@ -85,10 +86,15 @@ public class OscController extends Thread {
 	
 	// TODO: implement for audio analysis
 	void oscEvent(OscMessage theOscMessage) {
-		if(theOscMessage.checkAddrPattern("/restart")==true) {
-			if(theOscMessage.checkTypetag("")) {
-				
-			}  
+		if(theOscMessage.checkAddrPattern("/analysis")==true) {
+			// don't bother with checking 25 ffff...
+			//if(theOscMessage.checkTypetag("")) {}
+			Object[] original = theOscMessage.arguments();
+			original = Arrays.copyOfRange(original, 3, original.length);
+			Float[] data = new Float[original.length];
+			for(int i=0; i<data.length; i++)
+				data[i] = (Float)(original[i]);
+			Controllers.getAnalysisController().setAnalysis(data);
 		}
 	}
 }

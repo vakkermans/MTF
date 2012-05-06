@@ -12,10 +12,12 @@ public class Controllers {
 	private OscController oscController;
 	private KeyController keyController;
 	private WindowMasksController windowMasksController;
+	private AnalysisController analysisController;
 	
 	protected Controllers() {
 		keyController = new KeyController();
 		windowMasksController = new WindowMasksController();
+		analysisController = new AnalysisController();
 		oscController = new OscController();
 		oscController.start();
 	}
@@ -54,6 +56,10 @@ public class Controllers {
      */	
 	public static OscController getOscController() {
 		return getInstance().oscController;
+	}
+	
+	public static AnalysisController getAnalysisController() {
+		return getInstance().analysisController;
 	}
 	
 	public static KeyController getKeyController() {

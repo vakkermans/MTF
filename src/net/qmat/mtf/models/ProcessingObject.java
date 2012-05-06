@@ -1,10 +1,12 @@
 package net.qmat.mtf.models;
+import codeanticode.glgraphics.GLGraphicsOffScreen;
 import net.qmat.mtf.Main;
 import pbox2d.PBox2D;
 
 public class ProcessingObject {
 	
 	protected Main p;
+	protected GLGraphicsOffScreen vp1, vp2;
 	protected PBox2D box2d;
 	private boolean markedForRemovalP = false;
 	
@@ -15,6 +17,8 @@ public class ProcessingObject {
 	public ProcessingObject()
 	{
 		this.p = Main.p;
+		this.vp1 = Main.vp1;
+		this.vp2 = Main.vp2;
 		this.box2d = Main.box2d;
 	}
 	

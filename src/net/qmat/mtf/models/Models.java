@@ -9,13 +9,15 @@ public class Models {
 
 	private static Models instance = null;
 	private WindowMasksModel windowMasksModel;
-	private MoonModel moonModel;
+	//private MoonModel moonModel;
+	//private BarsModel barsModel;
 	
 	//private HandsModel handsModel;
 	
 	protected Models() {
 		windowMasksModel = new WindowMasksModel();
-		moonModel = new MoonModel();
+		//moonModel = new MoonModel();
+		//barsModel = new BarsModel();
 	}
 	
     public static Models getInstance() {
@@ -46,7 +48,8 @@ public class Models {
     public static void draw() {
     	// Call all the models' draw functions here.
     	Models models = Models.getInstance();
-    	models.moonModel.draw();
+    	//models.moonModel.draw();
+    	//models.barsModel.draw();
     	// draw the masks last
     	models.windowMasksModel.draw();
     }

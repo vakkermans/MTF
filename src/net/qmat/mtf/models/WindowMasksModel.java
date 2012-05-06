@@ -3,16 +3,13 @@ package net.qmat.mtf.models;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.URL;
 import java.util.ArrayList;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
+
+import codeanticode.glgraphics.GLGraphicsOffScreen;
 
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.sun.opengl.util.FileUtil;
-
 import net.qmat.mtf.Main;
 import net.qmat.mtf.utils.Settings;
 
@@ -31,17 +28,20 @@ public class WindowMasksModel extends ProcessingObject {
 		p.ellipseMode(Main.CENTER);
 		
 		for(WindowMask mask : masks) {
+			GLGraphicsOffScreen vp = (mask.screen == 1) ? vp1 : vp2;
+			vp.beginDraw();
 			if(showStrokesP) {
-				p.fill(0, 0, 0, 200);
+				vp.fill(0, 0, 0, 200);
 				if(selectedMask == mask)
-					p.stroke(255, 255, 0);
+					vp.stroke(255, 255, 0);
 				else
-					p.stroke(255, 0, 0);
+					vp.stroke(255, 0, 0);
 			} else {
-				p.fill(0);
-				p.noStroke();
+				vp.fill(0);
+				vp.noStroke();
 			}
-			p.ellipse(mask.x, mask.y, mask.width, mask.height);
+			vp.ellipse(mask.x, mask.y, mask.width, mask.height);
+			vp.endDraw();
 		}
 	}
 	
@@ -52,12 +52,12 @@ public class WindowMasksModel extends ProcessingObject {
 	public void selectMask(float x, float y) {
 		for(int i=masks.size()-1; i>=0; i--) {
 			WindowMask mask = masks.get(i);
-			// for a circle: if(Main.dist(x, y, mask.x, mask.y) < mask.diameter/2f) {
-			if(insideMask(x, y, mask)) {
-				selectedMask = mask;
-				return;
+			if(mask.screen == Main.selectedScreen) {
+				if(insideMask(x, y, mask)) {
+					selectedMask = mask;
+					return;
+				}
 			}
-			
 		}
 		unselectMask();
 	}
@@ -87,7 +87,7 @@ public class WindowMasksModel extends ProcessingObject {
 		Type t = new TypeToken<ArrayList<WindowMask>>(){}.getType();
 		try {
 			File f = getMasksFile();
-			masks = p.gson.fromJson(FileUtils.readFileToString(f), t);
+			masks = Main.gson.fromJson(FileUtils.readFileToString(f), t);
 			System.out.println("Loaded " + masks.size() + " masks from disk.");
 		} catch (JsonSyntaxException e) {
 			System.err.print("There was an error interpreting the serialised window masks.");
@@ -114,6 +114,7 @@ public class WindowMasksModel extends ProcessingObject {
 		WindowMask mask = new WindowMask();
 		mask.x = p.mouseX;
 		mask.y = p.mouseY;
+		mask.screen = Main.selectedScreen;
 		masks.add(mask);
 		return mask;
 	}
