@@ -76,7 +76,6 @@ public class Main extends PApplet {
 		vp2.background(0);
 		vp2.endDraw();
 		
-		
 		Controllers.update();
 		Models.update();
 		
