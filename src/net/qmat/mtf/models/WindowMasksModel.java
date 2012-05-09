@@ -29,6 +29,7 @@ public class WindowMasksModel extends ProcessingObject {
 		
 		for(WindowMask mask : masks) {
 			GLGraphicsOffScreen vp = (mask.screen == 1) ? vp1 : vp2;
+			vp.strokeWeight(1f);
 			vp.beginDraw();
 			if(showStrokesP) {
 				vp.fill(0, 0, 0, 200);

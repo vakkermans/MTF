@@ -10,6 +10,7 @@ public class Models {
 	private static Models instance = null;
 	private WindowMasksModel windowMasksModel;
 	private MasksModel masksModel;
+	private BaseLayersModel baseLayersModel; 
 	
 	//private MoonModel moonModel;
 	//private BarsModel barsModel;
@@ -17,6 +18,8 @@ public class Models {
 	protected Models() {
 		windowMasksModel = new WindowMasksModel();
 		masksModel = new MasksModel();
+		baseLayersModel = new BaseLayersModel(masksModel);
+		
 		
 		//moonModel = new MoonModel();
 		//barsModel = new BarsModel();
@@ -47,10 +50,15 @@ public class Models {
     	return instance.windowMasksModel;
     }
     
+    public static MasksModel getMasksModel() {
+    	return instance.masksModel;
+    }
+    
     public static void draw() {
     	// Call all the models' draw functions here.
     	Models models = Models.getInstance();
     	models.masksModel.draw();
+    	models.baseLayersModel.draw();
     	
     	//models.moonModel.draw();
     	//models.barsModel.draw();

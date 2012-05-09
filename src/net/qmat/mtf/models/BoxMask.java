@@ -13,8 +13,7 @@ public class BoxMask extends CenterMask {
 	
 	private ArrayList<Box> boxes;
 	
-	public BoxMask(GLGraphicsOffScreen vp) {
-		super(vp);
+	public BoxMask() {
 		boxes = new ArrayList<Box>();
 		for(int i=0; i<NR_BOXES; i++) {
 			boxes.add(new Box(this));
@@ -22,6 +21,8 @@ public class BoxMask extends CenterMask {
 	}
 	
 	public void draw() {
+		clearBackground();
+		
 		aperture = (float)p.mouseX / Main.screenWidth;
 		restlessness = (float)p.mouseY / Main.screenHeight;
 		

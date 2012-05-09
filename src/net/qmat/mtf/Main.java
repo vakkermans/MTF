@@ -18,7 +18,9 @@ import pbox2d.PBox2D;
 import codeanticode.glgraphics.GLConstants;
 import codeanticode.glgraphics.GLGraphicsOffScreen;
 import codeanticode.glgraphics.GLTexture;
+import codeanticode.gsvideo.GSMovie;
 import processing.core.PApplet;
+import processing.video.Movie;
 
 public class Main extends PApplet {
 
@@ -181,5 +183,9 @@ public class Main extends PApplet {
 	
 	public void keyReleased() {
 		Controllers.getKeyController().keyReleased(keyCode);
+	}
+	
+	public void movieEvent(GSMovie m) {
+		m.read();
 	}
 }
