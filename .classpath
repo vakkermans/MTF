@@ -31,5 +31,21 @@
 	<classpathentry kind="lib" path="libs/commons-lang3-3.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="libs/commons-lang3-3.1-sources.jar"/>
 	<classpathentry kind="lib" path="libs/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="libs/video.jar"/>
+	<classpathentry kind="lib" path="libs/gstreamer-java.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MTF/data/gstreamer/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/GSVideo.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MTF/data/gstreamer"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/jna.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MTF/data/gstreamer"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
