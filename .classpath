@@ -7,7 +7,6 @@
 	<classpathentry kind="lib" path="libs/commons-cli-1.2-sources.jar"/>
 	<classpathentry kind="lib" path="libs/commons-cli-1.2.jar"/>
 	<classpathentry kind="lib" path="libs/core.jar"/>
-	<classpathentry kind="lib" path="libs/fullscreen.jar"/>
 	<classpathentry kind="lib" path="libs/GLGraphics.jar"/>
 	<classpathentry kind="lib" path="libs/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="libs/jbox2d-library-2.1.2.2-jar-with-dependencies.jar"/>

@@ -19,5 +19,4 @@ public class LabVideo extends BaseLayer {
 		canvas.putPixelsIntoTexture();
 		maskAndDraw();
 	}
-
 }

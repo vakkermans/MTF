@@ -8,7 +8,6 @@
 package net.qmat.mtf;
 
 import com.google.gson.Gson;
-
 import net.qmat.mtf.controllers.ContactController;
 import net.qmat.mtf.controllers.Controllers;
 import net.qmat.mtf.models.Models;
@@ -35,6 +34,10 @@ public class Main extends PApplet {
 	public static int selectedScreen = 1;
 	
 	public static int screenWidth, screenHeight;
+	public static int screens;
+	public static int positionX = 0;
+	public static int positionY = 0;
+	public static boolean presentation;
 	
 	public Main() {
 		p = this;
@@ -44,7 +47,7 @@ public class Main extends PApplet {
 
 		/* Set up processing stuff, size() should always be the first call in setup() */
 		// N.B. we have 3 screens
-		size(screenWidth * 3, screenHeight, GLConstants.GLGRAPHICS);
+		size(screenWidth * screens, screenHeight, GLConstants.GLGRAPHICS);
 		p.hint(DISABLE_DEPTH_TEST);
 		p.hint(DISABLE_OPENGL_2X_SMOOTH);
 		p.hint(ENABLE_OPENGL_4X_SMOOTH);
@@ -83,24 +86,11 @@ public class Main extends PApplet {
 		
 		Models.draw();
 		
-		// if '1' was pressed
-		if(Controllers.getKeyController().keyPressedAndChangedP(49)) {
-			vp = vp1;
-			selectedScreen = 1;
-		// if '2' was pressed
-		} else if(Controllers.getKeyController().keyPressedAndChangedP(50)) {
-			vp = vp2;
-			selectedScreen = 2;
-		} 
-		
 		// draw selected screen on the left
 		GLTexture vp1t = vp1.getTexture();
 		GLTexture vp2t = vp2.getTexture();
 		imageMode(CORNER);
 		image(selectedScreen == 1 ? vp1t : vp2t, 0, 0);
-		// draw screen1 and screen2
-		image(vp1t, screenWidth, 0);
-		image(vp2t, 2 * screenWidth, 0);
 		
 		Controllers.updateAtEndOfDraw();
 
@@ -132,11 +122,19 @@ public class Main extends PApplet {
 		debug = Settings.getBoolean(Settings.DEBUG);
 		screenWidth = Settings.getInteger(Settings.PR_WIDTH);
 		screenHeight = Settings.getInteger(Settings.PR_HEIGHT);
-		
+		screens = Settings.getInteger(Settings.PR_SCREENS);
+		positionX = Settings.getInteger(Settings.PR_POSITION_X);
+		positionY = Settings.getInteger(Settings.PR_POSITION_Y);
+		presentation = Settings.getBoolean(Settings.PR_PRESENTATION);
 		
 		// TODO: set right location
-		String location = "--location=0,30";
-		PApplet.main(new String[] {location, "net.qmat.mtf.Main" });
+		String location = "--location=" + positionX + "," + positionY;
+		String[] arguments;
+		if(presentation)
+			arguments = new String[] {location, "--present", "--hide-stop", "net.qmat.mtf.Main" };
+		else
+			arguments = new String[] {location, "net.qmat.mtf.Main" };
+		PApplet.main(arguments);
 		
 		String[][] keys = new String[][] {
 				{"s", "Save masks to disk."},
@@ -155,8 +153,6 @@ public class Main extends PApplet {
 	}
 
 	public void init(){
-		// TODO: uncomment for production
-		/*
 		if(frame!=null){
 			//make the frame not displayable
 			frame.removeNotify();
@@ -164,7 +160,6 @@ public class Main extends PApplet {
 			frame.setUndecorated(true);
 			frame.addNotify();
 		}
-		*/
 		super.init();
 	}
 

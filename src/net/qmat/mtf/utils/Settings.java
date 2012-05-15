@@ -14,6 +14,10 @@ public class Settings {
 	public static String PR_WIDTH = "PR_WIDTH";
 	public static String PR_HEIGHT = "PR_HEIGHT";
 	public static String PR_FULLSCREEN = "PR_FULLSCREEN";
+	public static String PR_SCREENS = "PR_SCREENS";
+	public static String PR_POSITION_X = "PR_POSITION_X";
+	public static String PR_POSITION_Y = "PR_POSITION_Y";
+	public static String PR_PRESENTATION = "PR_PRESENTATION";
 	
 	// settings for network
 	public static String OSC_LOCAL_PORT = "OSC_LOCAL_PORT";
