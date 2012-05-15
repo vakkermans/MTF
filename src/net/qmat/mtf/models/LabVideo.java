@@ -9,8 +9,8 @@ public class LabVideo extends BaseLayer {
 
 	public LabVideo(GLGraphicsOffScreen vp, CenterMask mask) {
 		super(vp, mask);
-		movie = new GSMovie(p, "movies/lab_video.mp4");
-		//movie = new GSMovie(p, "movies/pnr.mp4");
+		//movie = new GSMovie(p, p.dataPath("lab_video.mp4"));
+		movie = new GSMovie(p, "pnr.mp4");
 		movie.setPixelDest(canvas);  
 		movie.loop();
 	}

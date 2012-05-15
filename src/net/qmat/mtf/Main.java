@@ -19,7 +19,6 @@ import codeanticode.glgraphics.GLGraphicsOffScreen;
 import codeanticode.glgraphics.GLTexture;
 import codeanticode.gsvideo.GSMovie;
 import processing.core.PApplet;
-import processing.video.Movie;
 
 public class Main extends PApplet {
 

@@ -26,8 +26,6 @@ public class Settings {
 	public static String CONF_WINDOW_MASKS = "window_masks.json";
 	
 	
-	
-	
 	private static Settings instance = null;
 	Properties properties = new Properties();
 	
