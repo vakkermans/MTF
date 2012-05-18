@@ -17,7 +17,7 @@ public class WindowMasksModel extends ProcessingObject {
 	
 	private ArrayList<WindowMask> masks;
 	
-	private boolean showStrokesP = true;
+	private boolean showStrokesP = false;
 	private WindowMask selectedMask = null;
 	
 	public WindowMasksModel() {

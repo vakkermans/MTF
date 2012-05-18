@@ -2,6 +2,7 @@ package net.qmat.mtf.models;
 
 import java.util.ArrayList;
 import net.qmat.mtf.Main;
+import net.qmat.mtf.controllers.Controllers;
 import codeanticode.glgraphics.GLGraphicsOffScreen;
 
 public class BoxMask extends CenterMask {
@@ -23,8 +24,10 @@ public class BoxMask extends CenterMask {
 	public void draw() {
 		clearBackground();
 		
-		aperture = (float)p.mouseX / Main.screenWidth;
-		restlessness = (float)p.mouseY / Main.screenHeight;
+		//aperture = (float)p.mouseX / Main.screenWidth;
+		aperture = Controllers.getAnalysisController().getBarkBandRelative(5);
+		//restlessness = (float)p.mouseY / Main.screenHeight;
+		restlessness = Controllers.getAnalysisController().getBarkBandRelative(10);
 		
 		for(Box box : boxes) {
 			box.draw();

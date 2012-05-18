@@ -20,7 +20,6 @@ public class Models {
 		masksModel = new MasksModel();
 		baseLayersModel = new BaseLayersModel(masksModel);
 		
-		
 		//moonModel = new MoonModel();
 		//barsModel = new BarsModel();
 	}

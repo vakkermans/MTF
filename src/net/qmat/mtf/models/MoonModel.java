@@ -168,5 +168,6 @@ public class MoonModel extends ProcessingObject {
 	    toneMap.apply(new GLTexture[]{srcTex, bloomMask}, new GLTexture[]{finalTexture});
 
 		p.image(finalTexture, 0, 0);
+	    //p.image(bloomMask, 0, 0);
 	}
 }

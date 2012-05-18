@@ -23,7 +23,6 @@ public class WindowMasksController {
 		/*
 		 * Act on keystrokes 
 		 */
-		
 		WindowMasksModel wmm = Models.getWindowMasksModel();
 		// a - add mask
 		if(keyc.keyPressedAndChangedP(65))

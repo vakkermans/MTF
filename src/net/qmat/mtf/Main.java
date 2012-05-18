@@ -93,6 +93,7 @@ public class Main extends PApplet {
 		
 		Controllers.updateAtEndOfDraw();
 
+		//System.out.println(frameRate);
 		//box2d.step();
 		frameCount++;
 	}

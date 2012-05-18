@@ -32,7 +32,7 @@ public class Box extends ProcessingObject {
 		GLGraphicsOffScreen vp = boxMask.vp;
 		vp.beginDraw();
 		vp.noStroke();
-		vp.fill(255, 255, 255, 200);
+		vp.fill(255, 255, 255, 240);
 		vp.rectMode(Main.CENTER);
 		vp.pushMatrix();
 		vp.translate(Main.screenWidth/2, Main.screenHeight/2);
