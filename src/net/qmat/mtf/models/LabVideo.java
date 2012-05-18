@@ -11,7 +11,7 @@ public class LabVideo extends BaseLayer {
 		super(vp, mask);
 		//movie = new GSMovie(p, p.dataPath("lab_video.mp4"));
 		//movie = new GSMovie(p, "slit01.mov");
-		movie = new GSMovie(p, "cell_galaxy.mov");
+		movie = new GSMovie(p, "all.mov");
 		movie.setPixelDest(canvas);  
 		movie.loop();
 	}
